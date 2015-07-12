@@ -1,0 +1,10 @@
+{
+  "name": "breaking-news",
+  "version": "1.0.0",
+  "description": "Breaking news app using React, Flux, Firebase, Browersify, and Babel",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-static": "^0.7.6"
+  }
+}

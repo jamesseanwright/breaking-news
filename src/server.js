@@ -1,11 +1,12 @@
-'use strict';
-
-const nodeStatic = require('node-static');
-const http = require('http');
-const file = new nodeStatic.server('./public');
+import { Server } from 'node-static';
+import http from 'http';
+const file = new Server('./public');
+const port = process.env.PORT || 3000;
 
 http.createServer((req, res) => {
 	request.addListener('end', () => {
 		file.serve(req, res);
 	}).resume();
-}).listen(3000);
+}).listen();
+
+console.log(`listening on port ${port}`);

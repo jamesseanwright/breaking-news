@@ -11,9 +11,10 @@ import '../stores/news-store';
 
 const newsListFactory = React.createFactory(NewsList);
 
-React.render(
-	newsListFactory(),
-	document.querySelector('section[role="main"]')
-);
 
-window.React = React;
+setTimeout(() => { // TODO: window.onload
+	React.render(
+		newsListFactory(),
+		document.querySelector('section[role="main"]')
+	);
+}, 5000);

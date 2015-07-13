@@ -16,6 +16,7 @@ swig.setDefaults({ cache: false });
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
+	// TODO: get latest stories from Firebase on each new request
 	if (!NewsStore.getAll()) {
 		NewsStore.addChangeListener(() => {
 			onDataRetrieved(res);

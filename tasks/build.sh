@@ -2,6 +2,8 @@
 
 echo "Building..."
 
+shopt -s nullglob
+
 if [ ! -e dist ]
 then
 	mkdir dist

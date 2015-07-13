@@ -9,16 +9,21 @@ class NewsStore extends EventEmitter {
 		super();
 		this._stories = [];
 		this.register();
-		this._getAllFromFirebase();
+		this._listenToFirebase();
 	}
 
 	getAll() {
 		return this._stories;
 	}
 
-	_getAllFromFirebase() {
-		firebase.child('stories').on('value', data => {
+	_listenToFirebase() {
+		firebase.child('stories').once('value', data => {
 			this._stories = data.val();
+			this.emit(changeEvent);
+		});
+
+		firebase.child('stories').on('child_added', data => {
+			this._stories = this._stories.concat([data.val()]);
 			this.emit(changeEvent);
 		});
 	}

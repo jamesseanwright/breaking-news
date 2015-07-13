@@ -14,8 +14,7 @@ fi
 toES5()
 {
 	# $1 - file extesion
-
-	srcJS=(src/{,**/}*.$1)
+	srcJS=(src/{,components/}*.$1)
 
 	for script in ${srcJS[@]}
 	do
@@ -29,10 +28,29 @@ toES5()
 		fi
 
 		targetFile="$targetDir$filename"
-		echo "$script -> $targetFile"
 		babel $script > $targetFile
+		echo "$script -> $targetFile"
 	done
+}
+
+toClientES5()
+{
+
+	srcDir=src/public/
+	targetDir=dist/public/
+	filename=main.js
+
+	if [ ! -e $targetDir ]
+	then
+		mkdir $targetDir
+	fi
+
+
+	echo "$srcDir$filename -> $targetDir$filename"
+	browserify "$srcDir$filename" -t babelify --outfile "$targetDir$filename"
+	
 }
 
 toES5 js
 toES5 jsx
+toClientES5

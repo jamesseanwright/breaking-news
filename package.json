@@ -10,6 +10,10 @@
     "dev": "./tasks/build.sh && node dist/server"
   },
   "dependencies": {
+    "express": "^4.13.1",
     "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.3"
   }
 }

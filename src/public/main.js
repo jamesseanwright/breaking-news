@@ -1,8 +1,15 @@
-import '../actions/news-actions.js';
+import React from 'react';
+
+import '../actions/news-actions';
 
 import '../components/news-item.jsx';
-import '../components/news-list.jsx';
+import NewsList from '../components/news-list.jsx';
 
-import '../dispatcher/app-dispatcher.js';
+import '../dispatcher/app-dispatcher';
 
-import '../stores/news-store.js';
+import '../stores/news-store';
+
+React.render(
+	NewsList,
+	document.querySelector('section[role="main"]')
+);

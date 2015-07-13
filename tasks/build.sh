@@ -53,3 +53,4 @@ toClientES5()
 toES5 js
 toES5 jsx
 toClientES5
+cp src/view.swig dist/view.swig

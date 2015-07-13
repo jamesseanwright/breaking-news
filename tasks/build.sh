@@ -9,7 +9,7 @@ else
 	rm -rf dist
 fi
 
-srcJS=('src/**/*.js')
+srcJS=(src/{,**/}*.js)
 
 for script in ${srcJS[@]}
 do

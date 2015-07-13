@@ -1,12 +1,12 @@
-import { Server } from 'node-static';
 import http from 'http';
-const file = new Server('./public');
+import NewsList from './components/news-list';
+
 const port = process.env.PORT || 3000;
 
 http.createServer((req, res) => {
-	request.addListener('end', () => {
-		file.serve(req, res);
-	}).resume();
-}).listen();
+	res.writeHead(200);
+	res.write(React.renderToString(NewsList));
+	res.end();
+}).listen(port);
 
 console.log(`listening on port ${port}`);

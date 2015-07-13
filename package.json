@@ -1,15 +1,14 @@
 {
   "name": "breaking-news",
   "version": "1.0.0",
+  "repository": "https://github.com/jamesseanwright/breaking-news",
   "description": "Breaking news app using React, Flux, Firebase, Browersify, and Babel",
   "author": "",
   "license": "ISC",
-
   "scripts": {
     "build": "./tasks/build.sh"
   },
-
   "dependencies": {
-    "node-static": "^0.7.6"
+    "react": "^0.13.3"
   }
 }

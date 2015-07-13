@@ -6,9 +6,9 @@ const port = process.env.PORT || 3000;
 const newsListFactory = React.createFactory(NewsList);
 
 http.createServer((req, res) => {
-	res.writeHead(200);
-	res.write(React.renderToStaticMarkup(newsListFactory()));
-	res.end();
+	// res.writeHead(200);
+	// res.write(React.renderToStaticMarkup(newsListFactory()));
+	// res.end();
 }).listen(port);
 
 console.log(`listening on port ${port}`);

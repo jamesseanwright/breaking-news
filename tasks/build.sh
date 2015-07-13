@@ -14,7 +14,7 @@ fi
 toES5()
 {
 	# $1 - file extesion
-	srcJS=(src/{,components/}*.$1)
+	srcJS=(src/{,components/,dispatcher/,actions/,stores/}*.$1)
 
 	for script in ${srcJS[@]}
 	do
@@ -48,7 +48,6 @@ toClientES5()
 
 	echo "$srcDir$filename -> $targetDir$filename"
 	browserify "$srcDir$filename" -t babelify --outfile "$targetDir$filename"
-	
 }
 
 toES5 js

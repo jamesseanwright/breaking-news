@@ -5,7 +5,7 @@ class NewsItem extends React.Component {
 		return (
 			<div className="news-item">
 				<h2>{this.props.title}</h2>
-				<p>{this.props.author}</p>
+				<p>{this.props.source}</p>
 				<p>{this.props.children}</p>
 			</div>
 		);

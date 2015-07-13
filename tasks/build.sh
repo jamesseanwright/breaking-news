@@ -9,20 +9,28 @@ else
 	rm -rf dist
 fi
 
-srcJS=(src/{,**/}*.js)
+toES5()
+{
+	# $1 - file extesion
 
-for script in ${srcJS[@]}
-do
-	filename=$(echo $script | rev | cut -d '/' -f1 | rev)
-	srcDir=${script%%$(echo $filename)}
-	targetDir=${srcDir/src/dist}
+	srcJS=(src/{,**/}*.$1)
 
-	if [ ! -e ${targetDir} ]
-	then
-		mkdir -p ${targetDir}
-	fi
+	for script in ${srcJS[@]}
+	do
+		filename=$(echo $script | rev | cut -d '/' -f1 | rev)
+		srcDir=${script%%$(echo $filename)}
+		targetDir=${srcDir/src/dist}
 
-	targetFile="$targetDir$filename"
-	echo "$script -> $targetFile"
-	babel $script > $targetFile
-done
+		if [ ! -e ${targetDir} ]
+		then
+			mkdir -p ${targetDir}
+		fi
+
+		targetFile="$targetDir$filename"
+		echo "$script -> $targetFile"
+		babel $script > $targetFile
+	done
+}
+
+toES5 js
+toES5 jsx

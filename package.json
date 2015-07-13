@@ -6,7 +6,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build": "./tasks/build.sh"
+    "build": "./tasks/build.sh",
+    "dev": "./tasks/build.sh && node dist/server"
   },
   "dependencies": {
     "react": "^0.13.3"

@@ -1,9 +1,10 @@
 import AppDispatcher from '../dispatcher/app-dispatcher';
 
 class NewsActions {
-	static getAll() {
+	static getAll(callback) {
 		AppDispatcher.dispatch({
-			actionType: 'getAll'
+			actionType: 'getAll',
+			callback: callback
 		});
 	}
 }

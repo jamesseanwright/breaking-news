@@ -1,6 +1,7 @@
 {
 	"stories": [
 		{
+			"id": 1,
 			"title": "Greece debt crisis: Eurozone summit strikes deal",
 			"source": "BBC News",
 			"url": "http://www.bbc.co.uk/news/world-europe-33503955",
@@ -8,6 +9,7 @@
 		},
 
 		{
+			"id": 2,
 			"title": "Insurance Cheats Slip Up",
 			"source": "Sky News",
 			"url": "http://news.sky.com/story/1517900/caught-on-camera-insurance-cheats-slip-up",

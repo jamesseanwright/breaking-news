@@ -1,33 +1,34 @@
 import React from 'react';
 import NewsItem from './news-item.jsx';
 import NewsStore from '../stores/news-store';
-const newsStore = new NewsStore();
 
 class NewsList extends React.Component {
-	_onChange() {
-		this.setState({
-			items: this.getAll()
-		});
+	constructor() {
+		super();
+		this.state = this._getState();
 	}
 
-	getInitialState() {
+	_getState() {
 		return {
-			items: []
-		};
+			items: NewsStore.getAll()
+		}
 	}
 
+	_onChange() {
+		this.setState(this._getState());
+	}
 	componentDidMount() {
-		newsStore.addChangeListener(this._onChange);
+		NewsStore.addChangeListener(this._onChange);
 	}
 
 	componentWillUnmount() {
-		newsStore.removeChangeListener(this._onChange);
+		NewsStore.removeChangeListener(this._onChange);
 	}
 
 	render() {
 		var nodes = this.state.items.map(item => {
 			return (
-				<NewsItem title={item.name} source={item.source}>
+				<NewsItem key={item.id} title={item.title} source={item.source} url={item.url}>
 					{item.text}
 				</NewsItem>
 			);

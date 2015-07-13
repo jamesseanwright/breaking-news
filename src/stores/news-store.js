@@ -1,5 +1,5 @@
 import AppDispatcher from '../dispatcher/app-dispatcher';
-import EventEmitter from 'events';
+import { EventEmitter } from 'events';
 import Firebase from 'firebase';
 const firebase = new Firebase('https://blistering-heat-5869.firebaseio.com/'); 
 const changeEvent = 'change';
@@ -38,4 +38,4 @@ class NewsStore extends EventEmitter {
 	}
 }
 
-export default NewsStore;
+export default new NewsStore();

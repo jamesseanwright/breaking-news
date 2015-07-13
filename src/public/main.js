@@ -9,7 +9,11 @@ import '../dispatcher/app-dispatcher';
 
 import '../stores/news-store';
 
+const newsListFactory = React.createFactory(NewsList);
+
 React.render(
-	NewsList,
+	newsListFactory(),
 	document.querySelector('section[role="main"]')
 );
+
+window.React = React;

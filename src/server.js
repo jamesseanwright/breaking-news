@@ -13,6 +13,7 @@ app.set('view engine', 'html');
 app.set('views', __dirname);
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
 	if (!NewsStore.getAll()) {
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
 }).listen(port);
 
 function onDataRetrieved(res) {
-	res.status(200).render('view.swig', { stories: React.renderToStaticMarkup(newsListFactory()) });
+	res.status(200).render('view.swig', { stories: React.renderToString(newsListFactory()) });
 }
 
 console.log(`listening on port ${port}`);

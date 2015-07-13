@@ -17,12 +17,13 @@ class NewsList extends React.Component {
 	_onChange() {
 		this.setState(this._getState());
 	}
+
 	componentDidMount() {
-		NewsStore.addChangeListener(this._onChange);
+		NewsStore.addChangeListener(this._onChange.bind(this));
 	}
 
 	componentWillUnmount() {
-		NewsStore.removeChangeListener(this._onChange);
+		NewsStore.removeChangeListener(this._onChange.bind(this));
 	}
 
 	render() {

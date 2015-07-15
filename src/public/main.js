@@ -1,20 +1,27 @@
 import React from 'react';
-
-import '../actions/news-actions';
-
-import '../components/news-item.jsx';
+import NewsActions from '../actions/news-actions';
 import NewsList from '../components/news-list.jsx';
-
+import NewsStore from '../stores/news-store';
+import '../components/news-item.jsx';
 import '../dispatcher/app-dispatcher';
 
-import '../stores/news-store';
-
 const newsListFactory = React.createFactory(NewsList);
+var initialised = false;
 
+NewsStore.addChangeListener(() => {
+	if (initialised) {
+		return;
+	}
 
-setTimeout(() => { // TODO: window.onload?
 	React.render(
 		newsListFactory(),
 		document.querySelector('section[role="main"]')
 	);
-}, 5000);
+
+	initialised = true;
+});
+
+NewsActions.listenToFirebase({
+	type: 'on',
+	name: 'child_added'
+});

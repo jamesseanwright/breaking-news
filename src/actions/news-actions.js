@@ -1,10 +1,16 @@
 import AppDispatcher from '../dispatcher/app-dispatcher';
 
 class NewsActions {
-	static getAll(callback) {
+	static getAll() {
 		AppDispatcher.dispatch({
-			actionType: 'getAll',
-			callback: callback
+			type: 'getAll'
+		});
+	}
+
+	static listenToFirebase(eventData) {
+		AppDispatcher.dispatch({
+			type: 'listenToFirebase',
+			data: eventData
 		});
 	}
 }

@@ -3,10 +3,13 @@ import swig from 'swig';
 import React from 'react';
 import NewsList from './components/news-list.jsx';
 import NewsStore from './stores/news-store';
+import NewsActions from './actions/news-actions';
 
 const port = process.env.PORT || 3000;
 const newsListFactory = React.createFactory(NewsList);
 const app = express();
+
+var listening = false;
 
 app.engine('swig', swig.renderFile);
 app.set('view engine', 'html');
@@ -15,19 +18,23 @@ app.set('view cache', false);
 swig.setDefaults({ cache: false });
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', (req, res) => {
-	// TODO: get latest stories from Firebase on each new request
-	if (!NewsStore.getAll()) {
-		NewsStore.addChangeListener(() => {
-			onDataRetrieved(res);
-		});
-	} else {
-		onDataRetrieved(res);
+console.log('Waiting for stories...');
+
+NewsStore.addChangeListener(() => {
+	if (listening) {
+		return;
 	}
-}).listen(port);
 
-function onDataRetrieved(res) {
-	res.status(200).render('view.swig', { stories: React.renderToString(newsListFactory()) });
-}
+	console.log(`listening on port ${port}`);
 
-console.log(`listening on port ${port}`);
+	app.get('/', (req, res) => {
+		res.status(200).render('view.swig', { stories: React.renderToStaticMarkup(newsListFactory()) });		
+	}).listen(port);
+
+	listening = true;
+});
+
+NewsActions.listenToFirebase({
+	type: 'once',
+	name: 'value'
+});

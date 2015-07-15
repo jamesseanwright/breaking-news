@@ -9,21 +9,22 @@ class NewsStore extends EventEmitter {
 		super();
 		this._stories = [];
 		this.register();
-		this._listenToFirebase();
 	}
 
 	getAll() {
 		return this._stories;
 	}
 
-	_listenToFirebase() {
-		firebase.child('stories').once('value', data => {
-			this._stories = data.val();
-			this.emit(changeEvent);
-		});
+	listenToFirebase(eventData) {
+		firebase.child('stories')[eventData.type](eventData.name, data => {
+			var newData = data.val();
 
-		firebase.child('stories').on('child_added', data => {
-			this._stories = this._stories.concat([data.val()]);
+			if (eventData.name === 'value') {
+				this._stories = newData.reverse();
+			} else {
+				this._stories.unshift(newData);
+			}
+
 			this.emit(changeEvent);
 		});
 	}
@@ -38,7 +39,7 @@ class NewsStore extends EventEmitter {
 
 	register() {
 		AppDispatcher.register(action => {
-			this[action]();
+			this[action.type](action.data);
 		});
 	}
 }

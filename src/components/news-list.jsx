@@ -36,9 +36,9 @@ class NewsList extends React.Component {
 		});
 
 		return (
-			<div className="items">
+			<ul className="items">
 				{nodes}
-			</div>
+			</ul>
 		);
 	}
 }

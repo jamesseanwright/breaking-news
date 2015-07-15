@@ -5,17 +5,17 @@ import NewsStore from '../stores/news-store';
 class NewsList extends React.Component {
 	constructor() {
 		super();
-		this.state = this._getState();
+		this.state = this._updateState();
 	}
 
-	_getState() {
+	_updateState() {
 		return {
 			items: NewsStore.getAll()
 		}
 	}
 
 	_onChange() {
-		this.setState(this._getState());
+		this.setState(this._updateState());
 	}
 
 	componentDidMount() {
@@ -24,6 +24,10 @@ class NewsList extends React.Component {
 
 	componentWillUnmount() {
 		NewsStore.removeChangeListener(this._onChange.bind(this));
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		return this.state.items !== nextState.items;
 	}
 
 	render() {

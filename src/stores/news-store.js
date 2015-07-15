@@ -1,14 +1,16 @@
 import AppDispatcher from '../dispatcher/app-dispatcher';
 import { EventEmitter } from 'events';
 import Firebase from 'firebase';
+import { List } from 'immutable';
+
 const firebase = new Firebase('https://blistering-heat-5869.firebaseio.com/'); 
 const changeEvent = 'change';
 
 class NewsStore extends EventEmitter {
 	constructor() {
 		super();
-		this._stories = [];
 		this.register();
+		this._stories = new List();
 	}
 
 	getAll() {
@@ -19,10 +21,10 @@ class NewsStore extends EventEmitter {
 		firebase.child('stories')[eventData.type](eventData.name, data => {
 			var newData = data.val();
 
-			if (eventData.name === 'value') {
-				this._stories = newData.reverse();
+			if (newData.length) {
+				this._stories = this._stories.concat(newData.reverse());
 			} else {
-				this._stories.unshift(newData);
+				this._stories = this._stories.unshift(newData);
 			}
 
 			this.emit(changeEvent);

@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'yorkwhiteletterregular';
+    src: url('/fonts/yorkwhiteletter-webfont.eot');
+    src: url('/fonts/yorkwhiteletter-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/yorkwhiteletter-webfont.woff2') format('woff2'),
+         url('/fonts/yorkwhiteletter-webfont.woff') format('woff'),
+         url('/fonts/yorkwhiteletter-webfont.ttf') format('truetype'),
+         url('/fonts/yorkwhiteletter-webfont.svg#yorkwhiteletterregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+	font-family: yorkwhiteletterregular;
+	font-size: 72px;
+	text-align: center;
+}
+
+.news-list {
+	list-style-type: none;
+}
+
+.news-item {
+	float: left;
+	width: 320px;
+	background: #dddddd;
+	margin: 10px;
+	padding: 10px;
+}

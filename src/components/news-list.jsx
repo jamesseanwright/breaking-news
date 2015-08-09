@@ -40,7 +40,7 @@ class NewsList extends React.Component {
 		});
 
 		return (
-			<ul className="items">
+			<ul className="news-list">
 				{nodes}
 			</ul>
 		);

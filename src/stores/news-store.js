@@ -24,8 +24,6 @@ class NewsStore extends EventEmitter {
 			this._stories = this._stories.unshift(newData);
 		}
 
-		console.log(this._stories);
-
 		this.emit(changeEvent);
 	}
 

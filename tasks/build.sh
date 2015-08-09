@@ -45,7 +45,6 @@ toClientES5()
 		mkdir $targetDir
 	fi
 
-
 	echo "$srcDir$filename -> $targetDir$filename"
 	browserify "$srcDir$filename" -t babelify --outfile "$targetDir$filename"
 }
@@ -54,3 +53,5 @@ toES5 js
 toES5 jsx
 toClientES5
 cp src/view.swig dist/view.swig
+cp src/public/main.css dist/public
+cp -R src/public/fonts dist/public

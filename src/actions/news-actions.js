@@ -1,4 +1,7 @@
 import AppDispatcher from '../dispatcher/app-dispatcher';
+import Firebase from 'firebase';
+
+const firebase = new Firebase('https://blistering-heat-5869.firebaseio.com/');
 
 class NewsActions {
 	static getAll() {
@@ -8,9 +11,13 @@ class NewsActions {
 	}
 
 	static listenToFirebase(eventData) {
-		AppDispatcher.dispatch({
-			type: 'listenToFirebase',
-			data: eventData
+		var child = firebase.child('stories');
+
+		firebase.child('stories')[eventData.type](eventData.name, data => {
+			AppDispatcher.dispatch({
+				type: 'newDataReceived',
+				data: data
+			});
 		});
 	}
 }

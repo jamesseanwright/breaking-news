@@ -14,7 +14,7 @@ fi
 toES5()
 {
 	# $1 - file extesion
-	srcJS=(src/{,components/,dispatcher/,actions/,stores/}*.$1)
+	srcJS=(src/{,components/,dispatcher/,actions/,stores/,iso/}*.$1)
 
 	for script in ${srcJS[@]}
 	do

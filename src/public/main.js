@@ -6,20 +6,11 @@ import '../components/news-item.jsx';
 import '../dispatcher/app-dispatcher';
 
 const newsListFactory = React.createFactory(NewsList);
-var initialised = false;
 
-NewsStore.addChangeListener(() => {
-	if (initialised) {
-		return;
-	}
-
-	React.render(
-		newsListFactory(),
-		document.querySelector('section[role="main"]')
-	);
-
-	initialised = true;
-});
+React.render(
+	newsListFactory(),
+	document.querySelector('section[role="main"]')
+);
 
 NewsActions.listenToFirebase({
 	type: 'on',

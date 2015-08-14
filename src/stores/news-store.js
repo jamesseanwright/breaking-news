@@ -1,14 +1,15 @@
 import AppDispatcher from '../dispatcher/app-dispatcher';
 import { EventEmitter } from 'events';
 import { List } from 'immutable';
+import iso from '../iso';
 
 const changeEvent = 'change';
 
 class NewsStore extends EventEmitter {
-	constructor() {
+	constructor(stories) {
 		super();
 		this.register();
-		this._stories = new List();
+		this._stories = new List(stories);
 	}
 
 	getAll() {
@@ -16,7 +17,7 @@ class NewsStore extends EventEmitter {
 	}
 
 	newDataReceived(data) {
-		var newData = data.val();
+		const newData = data.val();
 
 		if (newData.length) {
 			this._stories = this._stories.concat(newData.reverse());
@@ -24,6 +25,7 @@ class NewsStore extends EventEmitter {
 			this._stories = this._stories.unshift(newData);
 		}
 
+		iso.update(this);
 		this.emit(changeEvent);
 	}
 
@@ -40,6 +42,10 @@ class NewsStore extends EventEmitter {
 			this[action.type](action.data);
 		});
 	}
+
+	serialise() {
+		return this._stories;
+	}
 }
 
-export default new NewsStore();
+export default NewsStore;

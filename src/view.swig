@@ -11,6 +11,10 @@
 			{{ stories|safe }}
 		</section>
 
+		<script>
+			{{ appState|safe }}
+		</script>
+
 		<script src="/main.js"></script>
 	</body>
 </html>

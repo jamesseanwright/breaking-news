@@ -1,16 +1,18 @@
 import React from 'react';
 import NewsItem from './news-item.jsx';
 import NewsStore from '../stores/news-store';
+import iso from '../iso';
 
 class NewsList extends React.Component {
 	constructor() {
 		super();
+		this._store = iso.hydrate(NewsStore);
 		this.state = this._updateState();
 	}
 
 	_updateState() {
 		return {
-			items: NewsStore.getAll()
+			items: this._store.getAll()
 		}
 	}
 
@@ -19,11 +21,11 @@ class NewsList extends React.Component {
 	}
 
 	componentDidMount() {
-		NewsStore.addChangeListener(this._onChange.bind(this));
+		this._store.addChangeListener(this._onChange.bind(this));
 	}
 
 	componentWillUnmount() {
-		NewsStore.removeChangeListener(this._onChange.bind(this));
+		this._store.removeChangeListener(this._onChange.bind(this));
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
@@ -31,7 +33,7 @@ class NewsList extends React.Component {
 	}
 
 	render() {
-		var nodes = this.state.items.map(item => {
+		const nodes = this.state.items.map(item => {
 			return (
 				<NewsItem key={item.id} title={item.title} source={item.source} url={item.url}>
 					{item.text}

@@ -20,7 +20,6 @@ app.use(express.static(__dirname + '/public'));
 iso.add(new NewsStore());
 
 app.get('/', (req, res) => {
-	console.log(React.renderToStaticMarkup(newsListFactory()));
 	res.status(200).render('view.swig', { stories: React.renderToStaticMarkup(newsListFactory()), appState: iso.serialise() });
 }).listen(port);
 

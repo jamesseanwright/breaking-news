@@ -16,14 +16,22 @@ h1 {
 	text-align: center;
 }
 
+html {
+	background: #dedede;
+}
+
 .news-list {
 	list-style-type: none;
+	padding: 0;
 }
 
 .news-item {
-	float: left;
-	width: 320px;
-	background: #dddddd;
-	margin: 10px;
+	font-family: "Century Gothic", sans-serif;
+	display: block;
+	margin: 10px auto;
+	width: 80%;
+	max-width: 960px;
+	background: white;
 	padding: 10px;
+	box-shadow: 0 0 10px #aaa;
 }

@@ -1,6 +1,5 @@
 export default {
 	_objects: {},
-	_serialisedObjects: null,
 	_clientProperty: 'window.appState',
 	add: function add(object) {
 		const name = object.constructor.name;

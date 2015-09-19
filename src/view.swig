@@ -8,12 +8,8 @@
 		<h1>Breaking News</h1>
 
 		<section role="main">
-			{{ stories|safe }}
+			Stories will go here!
 		</section>
-
-		<script>
-			{{ appState|safe }}
-		</script>
 
 		<script src="/main.js"></script>
 	</body>

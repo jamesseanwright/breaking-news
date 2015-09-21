@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class NewsItem extends React.Component {
+class NewsItem extends Component {
+	shouldComponentUpdate() {
+		return false;
+	}
+
 	render() {
 		const { url, title, source, children } = this.props; 
 		

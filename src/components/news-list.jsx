@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import NewsItem from './news-item.jsx';
 import NewsStore from '../stores/news-store';
 import iso from '../iso';
 
-class NewsList extends React.Component {
+class NewsList extends Component {
 	constructor() {
 		super();
 		this._store = iso.hydrate(NewsStore);
-		this.state = this._updateState();
+		this.state = this._getState();
 	}
 
-	_updateState() {
+	_getState() {
 		return {
 			items: this._store.getAll()
 		}
 	}
 
 	_onChange() {
-		this.setState(this._updateState());
+		this.setState(this._getState());
 	}
 
 	componentDidMount() {

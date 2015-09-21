@@ -1,11 +1,16 @@
 import AppDispatcher from '../dispatcher/app-dispatcher';
 import Firebase from 'firebase';
 
-const firebase = new Firebase('https://blistering-heat-5869.firebaseio.com/');
-
 class NewsActions {
+	static getFirebase() {
+		if (!this._firebase)
+			this._firebase = new Firebase('https://blistering-heat-5869.firebaseio.com/');
+	
+		return this._firebase;
+	}
+
 	static listenToFirebase(eventData) {
-		var child = firebase.child('stories');
+		const firebase = this.getFirebase();
 
 		firebase.child('stories')[eventData.type](eventData.name, data => {
 			AppDispatcher.dispatch({
